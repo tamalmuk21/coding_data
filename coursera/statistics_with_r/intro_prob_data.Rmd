@@ -3,4 +3,5 @@ title: "Introduction to Probability and Data"
 author: "Tamal Mukherjee"
 output: html_notebook
 ---
+to view http://htmlpreview.github.io
 
