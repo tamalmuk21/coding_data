@@ -401,7 +401,7 @@ your workspace.
 
 ```{r variables-in-present}
 # type your code for Question 4 here, and Knit
-
+dim(present)
 ```
 
 <div id="exercise">

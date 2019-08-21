@@ -55,4 +55,8 @@ Principles of experimental design
 
 ![](jpeg/Annotation 2019-08-21 132351.jpg)
 
+**Shortcuts**
 
+piping operator: ctrl + shift + m
+
+assign operator: alt + -
