@@ -4,4 +4,48 @@ author: "Tamal Mukherjee"
 output: html_notebook
 ---
 to view http://htmlpreview.github.io
+To run r code
+**shortcut is ctrl+alt+i**
+
+
+# Introduction
+![](jpeg/Annotation 2019-08-21 113829.jpg)
+
+![](jpeg/Annotation 2019-08-21 114137.jpg)
+![](jpeg/Annotation 2019-08-21 114257.jpg)
+![](jpeg/Annotation 2019-08-21 114407.jpg)
+![](jpeg/Annotation 2019-08-21 114448.jpg)
+![](jpeg/Annotation 2019-08-21 114514.jpg)
+
+**discrete numerical variable**: An accounted veriable that can only take on whole number values
+
+**continuous numerical variable**: it can take on any number of values between two set of numbers
+
+![](jpeg/Annotation 2019-08-21 115655.jpg)
+
+*hdi* is an **ordinal categorical variable**
+
+![](jpeg/Annotation 2019-08-21 120039.jpg)
+![](jpeg/Annotation 2019-08-21 120207.jpg)
+![](jpeg/Annotation 2019-08-21 120230.jpg)
+
+# Sampling & sources of bias
+
+![](jpeg/Annotation 2019-08-21 120616.jpg)
+![](jpeg/Annotation 2019-08-21 120709.jpg)
+![](jpeg/Annotation 2019-08-21 120837.jpg)
+![](jpeg/Annotation 2019-08-21 121111.jpg)
+![](jpeg/Annotation 2019-08-21 123543.jpg)
+![](jpeg/Annotation 2019-08-21 123603.jpg)
+
+# Experimental Design
+
+Principles of experimental design
+
+![](jpeg/Annotation 2019-08-21 124115.jpg)
+
+![](jpeg/Annotation 2019-08-21 130716.jpg)
+![](jpeg/Annotation 2019-08-21 130827.jpg)
+
+
 
