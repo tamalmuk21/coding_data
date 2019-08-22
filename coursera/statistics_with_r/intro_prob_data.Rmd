@@ -60,3 +60,28 @@ Principles of experimental design
 piping operator: ctrl + shift + m
 
 assign operator: alt + -
+
+```{r}
+data(arbuthnot)
+dim(arbuthnot)
+names(arbuthnot)
+arbuthnot$boys
+ggplot(data = arbuthnot, aes(x = year, y = girls)) +
+  geom_point()
+arbuthnot <- arbuthnot %>%
+  mutate(total = boys + girls)
+ggplot(data = arbuthnot, aes(x = year, y = total)) +
+  geom_line()
+ggplot(data = arbuthnot, aes(x = year, y = total)) +
+  geom_line() +
+  geom_point()
+arbuthnot <- arbuthnot %>%
+  mutate(more_boys = boys > girls)
+
+```
+
+```{r}
+data(present)
+dim(present)
+```
+
