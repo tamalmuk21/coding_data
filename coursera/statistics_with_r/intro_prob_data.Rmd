@@ -140,3 +140,13 @@ mutate(prop_boy_girl = boys/girls)
 ggplot(data = present, aes(x = year, y = prop_boy_girl)) + geom_line()
 ```
 
+
+# Week 2: Visualizing numerical data
+
+![](jpeg/Annotation 2019-08-22 171747.jpg)
+![](jpeg/Annotation 2019-08-22 172113.jpg)
+![](jpeg/Annotation 2019-08-22 172229.jpg)
+![](jpeg/Annotation 2019-08-22 172315.jpg)
+![](jpeg/Annotation 2019-08-22 173829.jpg)
+![](jpeg/Annotation 2019-08-22 173934.jpg)
+
