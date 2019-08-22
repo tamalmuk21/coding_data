@@ -150,3 +150,8 @@ ggplot(data = present, aes(x = year, y = prop_boy_girl)) + geom_line()
 ![](jpeg/Annotation 2019-08-22 173829.jpg)
 ![](jpeg/Annotation 2019-08-22 173934.jpg)
 
+**Measures of Center**
+
+![](jpeg/Annotation 2019-08-22 174527.jpg)
+![](jpeg/Annotation 2019-08-22 175724.jpg)
+
