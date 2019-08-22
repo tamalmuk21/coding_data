@@ -411,6 +411,7 @@ function and `present$year` as its argument.
 
 ```{r years-in-present-data}
 # type your code for Exercise here, and Knit
+range(present$year)
 
 ```
 
@@ -427,7 +428,11 @@ decreased over time.
 
 ```{r prop-boys-over-time}
 # type your code for Question 5 here, and Knit
+present <- present %>% 
+mutate(total = boys + girls)%>% 
+mutate(prop_boys = boys/total)
 
+ggplot(data = present, aes(x = year, y = prop_boys)) + geom_line()
 ```
 
 

@@ -61,6 +61,15 @@ piping operator: ctrl + shift + m
 
 assign operator: alt + -
 
+# Assignment
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(statsr)
+```
+
+
 ```{r}
 data(arbuthnot)
 dim(arbuthnot)
@@ -77,11 +86,22 @@ ggplot(data = arbuthnot, aes(x = year, y = total)) +
   geom_point()
 arbuthnot <- arbuthnot %>%
   mutate(more_boys = boys > girls)
-
 ```
 
 ```{r}
 data(present)
 dim(present)
 ```
+
+Calculate the total number of births for each year and store these values in a new variable called total in the  present dataset. Then, calculate the proportion of boys born each year and store these values in a new variable called prop_boys in the same dataset. Plot these values over time and based on the plot determine if the following statement is true or false: The proportion of boys born in the US has decreased over time.
+True
+False
+```{r}
+present <- present %>% 
+mutate(total = boys + girls)%>% 
+mutate(prop_boys = boys/total)
+
+ggplot(data = present, aes(x = year, y = prop_boys)) + geom_line()
+```
+
 
