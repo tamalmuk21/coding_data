@@ -169,8 +169,8 @@ ggplot(data = present, aes(x = year, y = prop_boy_girl)) + geom_line()
 ![](jpeg/Annotation 2019-08-26 151422.jpg)
 shows marginal distribution(width of the bars)
 ![](jpeg/Annotation 2019-08-26 152306.jpg)
-
-
+![](jpeg/Annotation 2019-08-26 173114.jpg)
+![](jpeg/Annotation 2019-08-26 175627.jpg)
 
 
 
