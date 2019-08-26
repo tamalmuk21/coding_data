@@ -155,3 +155,62 @@ ggplot(data = present, aes(x = year, y = prop_boy_girl)) + geom_line()
 ![](jpeg/Annotation 2019-08-22 174527.jpg)
 ![](jpeg/Annotation 2019-08-22 175724.jpg)
 
+![](jpeg/Annotation 2019-08-26 142502.jpg)
+![](jpeg/Annotation 2019-08-26 142821.jpg)
+![](jpeg/Annotation 2019-08-26 144009.jpg)
+![](jpeg/Annotation 2019-08-26 144638.jpg)
+![](jpeg/Annotation 2019-08-26 145418.jpg)
+![](jpeg/Annotation 2019-08-26 150027.jpg)
+![](jpeg/Annotation 2019-08-26 150202.jpg)
+![](jpeg/Annotation 2019-08-26 150354.jpg)
+![](jpeg/Annotation 2019-08-26 150549.jpg)
+![](jpeg/Annotation 2019-08-26 151224.jpg)
+![](jpeg/Annotation 2019-08-26 151306.jpg)
+![](jpeg/Annotation 2019-08-26 151422.jpg)
+shows marginal distribution(width of the bars)
+![](jpeg/Annotation 2019-08-26 152306.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
