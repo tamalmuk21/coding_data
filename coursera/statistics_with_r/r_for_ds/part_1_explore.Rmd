@@ -1,0 +1,7 @@
+---
+title: "Part I Explore"
+output:
+  html_document:
+    df_print: paged
+---
+https://r4ds.had.co.nz/data-visualisation.html
