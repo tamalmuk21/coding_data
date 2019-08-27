@@ -500,8 +500,7 @@ were `"delayed"` departing arrive `"on time"`?
 ```{r on-time-arr-perc}
 # type your code for Question 10 here, and Knit
 nycflights %>%
-  mutate(arr_type = ifelse(arr_delay < 0, "on_time", "delayed")) %>% 
-  mutate(dep_type = ifelse(dep_delay < 5, "on_time", "delayed")) %>% 
-  filter(dep_type == "delayed", arr_type == "on_time") %>% 
-  nrow() / nrow(nycflights)
+  mutate(arr_type = ifelse(arr_delay <= 0, "on_time", "delayed")) %>% 
+  group_by(dep_type) %>% 
+  summarise(ot_arr_percentage = sum(arr_type == "on_time")/ n())
 ```
