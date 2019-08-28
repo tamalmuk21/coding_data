@@ -1,7 +1,388 @@
 ---
 title: "Part I Explore"
-output:
-  html_document:
-    df_print: paged
+output: html_notebook
 ---
 https://r4ds.had.co.nz/data-visualisation.html
+
+https://rstudio-pubs-static.s3.amazonaws.com/271994_11b7ddf08518406c942009d2da632982.html
+
+```{r}
+# Load Libraries
+
+library(tidyverse)
+
+
+```
+
+
+
+# Hypothesis confirmation
+
+It’s possible to divide data analysis into two camps: hypothesis generation and hypothesis confirmation (sometimes called confirmatory analysis). The focus of this book is unabashedly on hypothesis generation, or data exploration. Here you’ll look deeply at the data and, in combination with your subject knowledge, generate many interesting hypotheses to help explain why the data behaves the way it does. You evaluate the hypotheses informally, using your scepticism to challenge the data in multiple ways.
+
+The complement of hypothesis generation is hypothesis confirmation. Hypothesis confirmation is hard for two reasons:
+
+You need a precise mathematical model in order to generate falsifiable predictions. This often requires considerable statistical sophistication.
+
+You can only use an observation once to confirm a hypothesis. As soon as you use it more than once you’re back to doing exploratory analysis. This means to do hypothesis confirmation you need to “preregister” (write out in advance) your analysis plan, and not deviate from it even when you have seen the data. We’ll talk a little about some strategies you can use to make this easier in modelling.
+
+It’s common to think about modelling as a tool for hypothesis confirmation, and visualisation as a tool for hypothesis generation. But that’s a false dichotomy: models are often used for exploration, and with a little care you can use visualisation for confirmation. The key difference is how often do you look at each observation: if you look only once, it’s confirmation; if you look more than once, it’s exploration.
+
+# Prerequisites
+
+Data-Frame : mpg
+
+# 3.2 First steps
+
+**Graphing Template**
+
+ggplot(data = 'data', aes('mappings')) + geom_function() + geom_function()
+
+OR
+
+ggplot(data = 'data') + geom_function(mapping = aes('mappings'))
+
+*e.g.*
+ggplot(data = mpg, aes(x = displ, y = hwy)) + geom_point() + geom_smooth()
+
+
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy)) + geom_point() + geom_smooth()
+
+```
+
+ The mapping argument is always paired with aes(), and the x and y arguments of aes() specify which variables to map to the x and y axes. ggplot2 looks for the mapped variables in the data argument
+ 
+**3.2.4 Exercises**
+
+**1.Run ggplot(data = mpg). What do you see?**
+
+```{r}
+ggplot(data = mpg)
+```
+**Ans:** I see a blank canvas.
+
+**2. How many rows are in mpg? How many columns?**
+
+```{r}
+dim(mpg)
+```
+**Ans:** Rows: 234, Coloumn: 11
+
+**3. What does the drv variable describe? Read the help for ?mpg to find out.**
+
+**Ans:** f = front-wheel drive, r = rear wheel drive, 4 = 4wd
+
+**4. Make a scatterplot of hwy vs cyl.**
+
+**Ans:** 
+```{r}
+ggplot(data = mpg, aes(x = cyl, y = hwy)) + geom_point()
+
+```
+
+**5. What happens if you make a scatterplot of class vs drv? Why is the plot not useful?**
+
+**Ans:** 
+
+```{r}
+ggplot(data = mpg, aes(x = class, y = drv)) + geom_point()
+```
+
+Both variables are factors. 
+
+# 3.3 Aesthetic mappings
+
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy, color = class)) + 
+  geom_point()
+```
+
+
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy, size = class)) + 
+  geom_point()
+ggplot(data = mpg, aes(x = displ, y = hwy, shape = class)) + 
+  geom_point()
+```
+
+
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy)) + 
+  geom_point(color = "blue")
+```
+
+![](C:/learning_github/coding_data/coursera/statistics_with_r/r_for_ds/shapes-1.png)
+
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy)) + 
+  geom_point(size = 3, shape = 10)
+```
+
+
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy, shape = fl)) + 
+  geom_point(color = "blue")
+```
+
+**3.3.1 Exercises**
+
+1. What’s gone wrong with this code? Why are the points not blue?
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, color = "blue"))
+```
+
+Ans: The code should be,
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy), color = "blue")
+```
+
+2. Which variables in mpg are categorical? Which variables are continuous? (Hint: type ?mpg to read the documentation for the dataset). How can you see this information when you run mpg?
+
+```{r}
+str(mpg)
+```
+
+Ans: Categorical:manufacturer, model, trans, drv ,fl, class ; Continuous: cty, hwy, displ
+
+3. Map a continuous variable to color, size, and shape. How do these aesthetics behave differently for categorical vs. continuous variables?
+
+Ans: 
+```{r}
+ggplot(data = mpg, aes(x= hwy, y = cty, color = fl, size = cty, shape = drv)) + geom_point()
+```
+
+4. What happens if you map the same variable to multiple aesthetics?
+
+Ans: 
+```{r}
+ggplot(data = mpg, aes(x= hwy, y = cyl, color = drv, size = drv, shape = drv)) + geom_point()
+```
+
+5. What does the stroke aesthetic do? What shapes does it work with? (Hint: use ?geom_point)
+
+Ans:For shapes that have a border (like 21), you can colour the inside and outside separately. Use the stroke aesthetic to modify the width of the border
+
+```{r}
+ggplot(data = mpg, aes(x= hwy, y = cty)) + geom_point(color = "red", size = 10, shape = 6, stroke = 2)
+
+```
+
+6. What happens if you map an aesthetic to something other than a variable name, like aes(colour = displ < 5)? Note, you’ll also need to specify x and y.
+
+```{r}
+ggplot(data = mpg, aes(x= displ, y = hwy, colour = class >= "subcompact")) + geom_point()
+
+```
+
+# 3.5 Facets
+
+*subplots that each display one subset of the data*
+
+The first argument of facet_wrap() should be a formula, which you create with ~ followed by a variable name (here “formula” is the name of a data structure in R, not a synonym for “equation”). The variable that you pass to facet_wrap() should be discrete.
+
+```{r}
+ggplot(data = mpg, aes(x = hwy, y = displ)) + geom_point() + facet_wrap(~ class, nrow = 2)
+```
+
+To facet your plot on the combination of two variables, add facet_grid() to your plot call. The first argument of facet_grid() is also a formula. This time the formula should contain two variable names separated by a ~.
+
+If you prefer to not facet in the rows or columns dimension, use a . instead of a variable name, e.g. + facet_grid(. ~ cyl).
+
+```{r}
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy)) + facet_grid(drv~ class)
+```
+
+
+# 3.5.1 Exercises
+
+
+1. What happens if you facet on a continuous variable?
+
+There is one facet for each value e.g. a facet on displ.
+
+2. What do the empty cells in plot with facet_grid(drv ~ cyl) mean? How do they relate to this plot?
+
+The facets are empty when there is no data for the according combination e.g. rear wheel drive (r) with 4 or 5 cylinder is not listed. The 7 cylinder factes are missed entirely.
+
+```{r}
+ggplot(data = mpg) + geom_point(mapping = aes(x = displ, y = hwy)) + facet_grid(~ hwy)
+
+```
+
+3. What plots does the following code make? What does . do?
+
+The “attribute ~ dot” notation plots the attribute values without a column attribute, thus showing multiple row-wise plots for each attribute value. The y-axis is repeated. With “dot ~ attribute” the row attribute is missing, thus showing column-wise the plots. Then the x-axis is repeated.
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(drv ~ .)
+```
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_grid(. ~ cyl)
+```
+
+
+4. Take the first faceted plot in this section:
+What are the advantages to using faceting instead of the colour aesthetic? What are the disadvantages? How might the balance change if you had a larger dataset?
+
+With faceting it is easier to examine the indivual classes. With coloring it is easier to see how the classes are clustered overall. With larger datasets it’s more likely that you want to see the overall clustering instead of the individual point clouds.
+
+
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy)) + geom_point() + facet_wrap(~ class, nrow = 2)
+```
+
+
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy, color = class)) + geom_point()
+```
+
+5. Read ?facet_wrap. What does nrow do? What does ncol do? What other options control the layout of the individual panels? Why doesn’t facet_grid() have nrow and ncol arguments?
+
+```{r}
+?facet_wrap
+```
+
+facet_wrap wraps a 1d sequence of panels into 2d. This is generally a better use of screen space than facet_grid() because most displays are roughly rectangular.
+
+Facet grids do not have these configuration because the rows and cols are determined by the specified attributes.
+
+
+nrow, ncol:    Number of rows and columns.
+
+scales:    should Scales be fixed ("fixed", the default), free ("free"), or free in one dimension ("free_x", "free_y").
+
+shrink:    If TRUE, will shrink scales to fit output of statistics, not raw data. If FALSE, will be range of raw data before statistical summary.
+
+
+6. When using facet_grid() you should usually put the variable with more unique levels in the columns. Why?
+
+When putting the more levels on the row axis, then the y-axis would shrink so that it is harder to see which actual values are at the points as shown in the plot.
+
+```{r}
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy)) + 
+  facet_grid(class ~ drv)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
