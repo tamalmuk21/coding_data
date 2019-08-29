@@ -179,6 +179,106 @@ ggplot(data = mpg, aes(x = displ, y = hwy)) + geom_point() + facet_grid(class ~ 
 ```
 
 
+# 3.6.1 Exercise
+
+1. What geom would you use to draw a line chart? A boxplot? A histogram? An area chart?
+
+Ans: 
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy)) + geom_line()
+```
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy, group = class)) + geom_boxplot()
+```
+
+```{r}
+ggplot(data = mpg, aes(x = displ)) + geom_histogram()
+
+```
+
+
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy)) + geom_area()
+
+```
+
+2. Run this code in your head and predict what the output will look like. Then, run the code in R and check your predictions.
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE)
+```
+
+3. What does show.legend = FALSE do? What happens if you remove it?
+Why do you think I used it earlier in the chapter?
+
+Ans: It shows legends as per the categorical variable selected to group
+
+4. What does the se argument to geom_smooth() do?
+
+Ans: Display confidence interval around smooth? (TRUE by default, see level to control.)
+
+5. Will these two graphs look different? Why/why not?
+
+No
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point() + 
+  geom_smooth()
+
+ggplot() + 
+  geom_point(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_smooth(data = mpg, mapping = aes(x = displ, y = hwy))
+
+```
+
+6. Recreate the R code necessary to generate the following graphs.
+
+
+Ans: 
+
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy)) + 
+  geom_point(size = 4) + 
+  geom_smooth()
+```
+
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy, group = drv)) + 
+  geom_point(size = 4) + 
+  geom_smooth(size = 2, se = FALSE)
+```
+
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy, color = drv)) + 
+  geom_point(size = 4) + 
+  geom_smooth(size = 2, se = FALSE)
+```
+
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy)) + 
+  geom_point(aes(color = drv), size = 4) + 
+  geom_smooth(size = 2, se = FALSE)
+```
+
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy, linetype = drv)) + 
+  geom_point(aes(color = drv), size = 4) + 
+  geom_smooth(size = 2, se = FALSE)
+```
+
+```{r}
+ggplot(data = mpg, aes(x = displ, y = hwy, linetype = drv)) + 
+  geom_point(color = "white", size = 7) + geom_point(aes(color = drv), size = 4)
+```
+
+
+
+
+
+
 
 
 

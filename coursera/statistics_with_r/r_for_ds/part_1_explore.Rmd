@@ -143,6 +143,8 @@ ggplot(data = mpg, aes(x = cty, y = hwy)) + geom_point(data = filter(mpg, class 
                                                                                                          
 ```
 
+# 3.7 Statistical transformations
+
 
 
 
