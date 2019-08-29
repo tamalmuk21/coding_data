@@ -276,6 +276,154 @@ ggplot(data = mpg, aes(x = displ, y = hwy, linetype = drv)) +
 
 
 
+# 3.7.1 Exercises
+
+1. What is the default geom associated with stat_summary()? How could you rewrite the previous plot to use that geom function instead of the stat function?
+
+Ans: 
+
+```{r}
+ggplot(data = diamonds, aes(x = cut, y = depth)) + geom_pointrange(fun.ymin = min, fun.ymax = max, fun.y = median, stat = "summary")
+```
+
+
+2. What does geom_col() do? How is it different to geom_bar()?
+
+https://ggplot2.tidyverse.org/reference/geom_bar.html
+
+Ans:
+
+```{r}
+ggplot(data = diamonds, aes(x = cut, y = depth)) + geom_col()
+```
+
+
+```{r}
+df <- data.frame(trt = c("a", "b", "c"), outcome = c(2.3, 1.9, 3.2))
+ggplot(df, aes(trt, outcome)) +
+  geom_point()
+```
+
+
+```{r}
+df <- data.frame(x = rep(c(2.9, 3.1, 4.5), c(5, 10, 4)))
+ggplot(df, aes(x)) + geom_bar()
+```
+
+
+
+
+3. Most geoms and stats come in pairs that are almost always used in concert. Read through the documentation and make a list of all the pairs. What do they have in common?
+
+Ans: https://ggplot2.tidyverse.org/reference/index.html
+
+
+
+
+A handful of layers are more easily specified with a stat_ function, drawing attention to the statistical transformation rather than the visual appearance. The computed variables can be mapped using stat().
+
+stat_ecdf()             Compute empirical cumulative distribution
+
+stat_ellipse()          Compute normal confidence ellipses
+
+stat_function()         Compute function for each x value
+
+stat_identity()         Leave data as is
+
+stat_summary_2d()
+stat_summary_hex()      Bin and summarise in 2d (rectangle & hexagons)
+
+stat_summary_bin() 
+stat_summary()          Summarise y values at unique/binned x
+
+stat_unique()           Remove duplicates
+
+stat_sf_coordinates()   Extract coordinates from 'sf' objects
+
+stat()                  Calculated aesthetics
+
+
+4. What variables does stat_smooth() compute? What parameters control its behaviour?
+
+Ans: 
+https://ggplot2.tidyverse.org/reference/geom_smooth.html
+
+
+y > predicted value
+
+ymin > lower pointwise confidence interval around the mean
+
+ymax > upper pointwise confidence interval around the mean
+
+se > standard error
+
+What parameters control its behaviour : loess method
+
+5. n our proportion bar chart, we need to set group = 1. Why? In other words what is the problem with these two graphs?
+
+Ans: 
+
+
+```{r}
+ggplot(data = diamonds) + 
+  geom_bar(mapping = aes(x = cut, y = ..prop.., group = 1))
+
+ggplot(data = diamonds, aes(x = cut, y = ..count../sum(..count..), fill = clarity) ) + 
+  geom_bar()
+```
+
+
+# 3.8.1 Exercises
+
+1. What is the problem with this plot? How could you improve it?
+
+Ans: 
+```{r}
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) + 
+  geom_point(position = "jitter") + geom_smooth(span = 2, se = FALSE)
+args(geom_jitter)
+
+```
+
+
+2. What parameters to geom_jitter() control the amount of jittering?
+
+```{r}
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy)) + geom_jitter(width = 3)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
